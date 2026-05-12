@@ -95,9 +95,9 @@
                 
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <div class="p-3 bg-light rounded">
+                        <div class="p-3 bg-light rounded border-start border-4 border-info">
                             <h5 class="text-muted mb-3">Sistema de Ecuaciones</h5>
-                            <ul class="list-unstyled font-monospace">
+                            <ul class="list-unstyled font-monospace text-primary">
                                 {% for eq in data.step_2.equations %}
                                 <li class="mb-2">👉 {{ eq }}</li>
                                 {% endfor %}
@@ -105,6 +105,19 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <div class="p-3 bg-light rounded h-100 border-start border-4 border-success">
+                            <h5 class="text-muted mb-3">Cálculos Paso a Paso</h5>
+                            <ul class="list-unstyled font-monospace text-success">
+                                {% for calc in data.step_2.calculations %}
+                                <li class="mb-2">✓ {{ calc }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-12">
                         <div class="p-3 bg-light rounded h-100">
                             <h5 class="text-muted mb-3">Resultados (&pi;)</h5>
                             <ul class="list-group">

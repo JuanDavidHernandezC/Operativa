@@ -71,6 +71,28 @@
                 </div>
                 {% endif %}
 
+                {% if step.equations %}
+                <div class="p-3 bg-light rounded mt-3 border-start border-4 border-info">
+                    <h5 class="text-muted mb-3">Fórmulas y Ecuaciones</h5>
+                    <ul class="list-unstyled font-monospace text-primary mb-0">
+                        {% for eq in step.equations %}
+                        <li class="mb-2">👉 {{ eq }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if step.calculations %}
+                <div class="p-3 bg-light rounded mt-3 border-start border-4 border-success">
+                    <h5 class="text-muted mb-3">Cálculos Paso a Paso</h5>
+                    <ul class="list-unstyled font-monospace text-success mb-0">
+                        {% for calc in step.calculations %}
+                        <li class="mb-2">✓ {{ calc }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
                 {% if step.results %}
                 <div class="row mt-4">
                     <div class="col-md-12">

@@ -70,6 +70,13 @@ def get_exercise_1():
                 "pi3 = 0.05*pi1 + 0.10*pi2 + 0.80*pi3",
                 "pi1 + pi2 + pi3 = 1",
             ],
+            "calculations": [
+                "De (1): 0.15*pi1 - 0.15*pi2 = 0.10*pi3  =>  pi3 = 1.5*pi1 - 1.5*pi2",
+                "De (2): 0.25*pi2 = 0.10*pi1 + 0.10(1.5*pi1 - 1.5*pi2)  =>  0.40*pi2 = 0.25*pi1  =>  pi2 = 0.625*pi1",
+                "Sustituyendo: pi3 = 1.5*pi1 - 1.5(0.625*pi1) = 0.5625*pi1",
+                "Normalización: pi1 + 0.625*pi1 + 0.5625*pi1 = 1  =>  2.1875*pi1 = 1",
+                "Resolviendo: pi1 = 0.4571",
+            ],
             "results": {"pi1": 0.4571, "pi2": 0.2857, "pi3": 0.2571},
         },
         "step_3": {
@@ -118,6 +125,16 @@ def get_exercise_2():
             },
             {
                 "title": "b) Distribución Estacionaria",
+                "equations": [
+                    "π1 = 0.90*π1 + 0.20*π2",
+                    "π2 = 0.10*π1 + 0.80*π2",
+                    "π1 + π2 = 1",
+                ],
+                "calculations": [
+                    "De (1): 0.10*π1 = 0.20*π2  =>  π1 = 2*π2",
+                    "Sustituyendo en (3): 2*π2 + π2 = 1  =>  3*π2 = 1  =>  π2 = 1/3 (≈33.33%)",
+                    "Por lo tanto: π1 = 2*(1/3) = 2/3 (≈66.67%)",
+                ],
                 "results": {"Cola 1": "66.67% (Mejor Posicionada)", "Cola 2": "33.33%"},
             },
             {
@@ -127,11 +144,20 @@ def get_exercise_2():
                     "row_headers": ["Cola 1", "Cola 2"],
                     "rows": [[0.82, 0.34], [0.18, 0.66]],
                 },
+                "calculations": [
+                    "P^2[C1,C2] = P[C1,C1] * P[C1,C2] + P[C1,C2] * P[C2,C2]",
+                    "= (0.90 * 0.20) + (0.20 * 0.80) = 0.18 + 0.16 = 0.34",
+                ],
                 "note": "Probabilidad de comprar Cola 1 dos veces dado que hoy compra Cola 2 es 34%.",
             },
             {
                 "title": "d) Probabilidad a 3 pasos",
-                "description": "La probabilidad de que alguien que hoy compra Cola 1 siga comprando Cola 1 en las próximas 3 compras es P^3[C1|C1] = 80.6%.",
+                "description": "La probabilidad de que alguien que hoy compra Cola 1 siga comprando Cola 1 en las próximas 3 compras es P^3[C1|C1].",
+                "calculations": [
+                    "P^3[C1,C1] = P^2[C1,C1] * P[C1,C1] + P^2[C1,C2] * P[C2,C1]",
+                    "= (0.82 * 0.90) + (0.34 * 0.20) = 0.738 + 0.068 = 0.806",
+                ],
+                "results": {"P^3[C1,C1]": "80.6%"},
             },
         ],
     }
@@ -145,6 +171,14 @@ def get_exercise_3():
         "steps": [
             {
                 "title": "Análisis y Comparación de Ganancias",
+                "calculations": [
+                    "SIN AGENCIA: Clientes Cola 1 = 100M × (2/3) = 66.67 millones",
+                    "SIN AGENCIA: Ganancia anual C1 = 66.67M × $52 = $3,466.67 millones",
+                    "CON AGENCIA: Nuevo estado estacionario => 0.05*π1 = 0.20*π2 => π1 = 4*π2 => π1 = 0.80 (80%)",
+                    "CON AGENCIA: Clientes Cola 1 = 100M × 0.80 = 80 millones",
+                    "CON AGENCIA: Ganancia bruta = 80M × $52 = $4,160 millones",
+                    "CON AGENCIA: Ganancia neta = $4,160M - $500M (Costo agencia) = $3,660 millones",
+                ],
                 "table": {
                     "headers": [
                         "Escenario",
@@ -171,6 +205,20 @@ def get_exercise_4():
     response = {
         "problem": "Problema 4: Inventario de Vehículos (s=3, S=6)",
         "steps": [
+            {
+                "title": "a) Probabilidades de Demanda (Poisson)",
+                "equations": [
+                    "Fórmula Poisson: P(D=x) = (e^-λ * λ^x) / x!",
+                    "Dado λ=4 vehículos por semana:",
+                ],
+                "calculations": [
+                    "P(D=0) = e^-4 * 4^0 / 0! = 0.0183",
+                    "P(D=1) = e^-4 * 4^1 / 1! = 0.0733",
+                    "P(D=2) = e^-4 * 4^2 / 2! = 0.1465",
+                    "P(D=3) = e^-4 * 4^3 / 3! = 0.1954",
+                    "P(D≥4) = 1 - P(D≤3) = 0.5665",
+                ],
+            },
             {
                 "title": "b) Matriz de Transición P",
                 "matrix": {
@@ -201,6 +249,13 @@ def get_exercise_5():
             {
                 "title": "Distribución Estacionaria y Decisión",
                 "description": "Comparación del estado estacionario y decisión respecto a la agencia.",
+                "calculations": [
+                    "Mercado total: 60,000 kg/mes. Beneficio = $1/kg",
+                    "Ganancia Original B1 = (60,000 * 0.2480) * 12 meses * $1 = $178,560",
+                    "Ganancia con Agencia B1 = (60,000 * 0.3200) * 12 meses * $1 = $230,400",
+                    "Ganancia adicional bruta = $230,400 - $178,560 = $51,840 / año",
+                    "Costo de la agencia = $40,000,000 / año",
+                ],
                 "results": {
                     "B1 Original": "24.80% (Ganancia: $178,560)",
                     "B1 con Agencia": "32.00% (Ganancia: $230,400)",
@@ -233,6 +288,15 @@ def get_exercise_6():
             },
             {
                 "title": "Distribución Estacionaria",
+                "equations": [
+                    "π_A = 0.448*π_A + 0.054*π_M + 0.011*π_B",
+                    "π_M = 0.484*π_A + 0.699*π_M + 0.503*π_B",
+                    "π_B = 0.068*π_A + 0.247*π_M + 0.486*π_B",
+                    "π_A + π_M + π_B = 1",
+                ],
+                "calculations": [
+                    "Resolviendo el sistema de ecuaciones lineales se obtiene la proporción de clases a largo plazo:"
+                ],
                 "results": {
                     "Clase Alta": "6.35%",
                     "Clase Media": "62.34%",
